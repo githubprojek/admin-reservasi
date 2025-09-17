@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = ["http://localhost:5000", "https://be-reservasi.vercel.app/"];
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const createAxiosInstance = (prefix) => {
   return axios.create({
@@ -9,7 +9,6 @@ const createAxiosInstance = (prefix) => {
   });
 };
 
-// Export semua instance
 export const axiosAuth = createAxiosInstance("auth");
 export const axiosHotel = createAxiosInstance("hotel");
 export const axiosReservasi = createAxiosInstance("reservasi");
