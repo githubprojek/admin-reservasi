@@ -2,10 +2,6 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "https://be-reservasi.vercel.app/"
-    },
-    {
-      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
