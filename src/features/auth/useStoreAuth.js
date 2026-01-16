@@ -30,7 +30,13 @@ export const useAuthStore = create((set) => ({
       const res = await axiosAuth.get("/check-auth");
       set({ user: res.data.user, isLoggedIn: true, isLoading: false });
     } catch (err) {
-      set({ user: null, isLoggedIn: false, isLoading: false });
+      if (err.response?.status === 401) {
+        // Belum login → normal
+        set({ user: null, isLoggedIn: false, isLoading: false });
+      } else {
+        // Error lain (server down, dll)
+        set({ error: "Terjadi kesalahan", isLoading: false });
+      }
     }
   },
 
