@@ -7,8 +7,7 @@ export const useStoreFasilitas = create((set, get) => ({
   fetchFasilitas: async () => {
     try {
       const res = await axiosFasilitas.get("/getFasilitas");
-      set({ fasilitasList: res.data.fasilitas });
-      console.log(fasilitas);
+      set({ fasilitasList: res.data.content.fasilitas });
     } catch (error) {
       console.log(error);
     }

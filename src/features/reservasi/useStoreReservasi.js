@@ -1,7 +1,7 @@
 import { axiosReservasi } from "../../utils/Axios";
 import { create } from "zustand";
 
-export const useStoreReservasi = create((set, get) => ({
+export const useStoreReservasi = create((set) => ({
   reservasiList: [],
   loading: false,
   error: null,
@@ -10,7 +10,7 @@ export const useStoreReservasi = create((set, get) => ({
     set({ loading: true, error: null });
     try {
       const res = await axiosReservasi.get("/getReservasi");
-      set({ reservasiList: res.data.reservasi });
+      set({ reservasiList: res.data.content.reservasi });
       console.log("Fetched reservasi:", res.data.reservasi);
     } catch (error) {
       console.error(error);

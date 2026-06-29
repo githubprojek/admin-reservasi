@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { axiosAuth } from "../../utils/Axios.js";
-import axios from "axios";
 
 export const useAuthStore = create((set) => ({
   user: null,
@@ -13,7 +12,9 @@ export const useAuthStore = create((set) => ({
     set({ isLoading: true, error: null });
     try {
       const res = await axiosAuth.post("/login", { email, password });
-      set({ user: res.data.user, isLoggedIn: true, isLoading: false });
+      const { user, token } = res.data.content;
+      localStorage.setItem("token", token);
+      set({ user, isLoggedIn: true, isLoading: false });
       return res.data;
     } catch (err) {
       set({
@@ -28,13 +29,12 @@ export const useAuthStore = create((set) => ({
     set({ isLoading: true, error: null });
     try {
       const res = await axiosAuth.get("/check-auth");
-      set({ user: res.data.user, isLoggedIn: true, isLoading: false });
+      set({ user: res.data.content.user, isLoggedIn: true, isLoading: false });
     } catch (err) {
       if (err.response?.status === 401) {
-        // Belum login → normal
+        localStorage.removeItem("token");
         set({ user: null, isLoggedIn: false, isLoading: false });
       } else {
-        // Error lain (server down, dll)
         set({ error: "Terjadi kesalahan", isLoading: false });
       }
     }
@@ -44,9 +44,11 @@ export const useAuthStore = create((set) => ({
     set({ isLoading: true, error: null });
     try {
       await axiosAuth.post("/logout", {});
+      localStorage.removeItem("token");
       set({ user: null, isLoggedIn: false, isLoading: false });
-    } catch (err) {
-      set({ isLoading: false, error: "Gagal logout." });
+    } catch {
+      localStorage.removeItem("token");
+      set({ user: null, isLoggedIn: false, isLoading: false, error: "Gagal logout." });
     }
   },
 
@@ -54,7 +56,7 @@ export const useAuthStore = create((set) => ({
     set({ isLoading: true, error: null });
     try {
       const res = await axiosAuth.get("/getUser");
-      set({ staffList: res.data.login, isLoading: false });
+      set({ staffList: res.data.content.users, isLoading: false });
     } catch (error) {
       console.error("Get staff error:", error);
       set({ error: "Gagal memuat data staff", isLoading: false });

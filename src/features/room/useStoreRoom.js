@@ -20,7 +20,7 @@ export const useStoreRoom = create((set, get) => ({
     try {
       const res = await axiosRoom.get("/getRoom");
       set({
-        roomList: res.data.rooms,
+        roomList: res.data.content.rooms,
         isFetched: true, // 🔥 Tandai sudah pernah fetch
       });
     } catch (error) {
@@ -107,11 +107,11 @@ export const useStoreRoom = create((set, get) => ({
   fetchAvailableRooms: async (hotelId, checkIn, checkOut) => {
     set({ loading: true, error: null });
     try {
-      const res = await axiosRoom.get("/get-available", {
+      const res = await axiosRoom.get("/getAvailable", {
         params: { hotelId, checkIn, checkOut },
       });
-      set({ availableRoom: res.data.rooms });
-      return res.data.rooms;
+      set({ availableRoom: res.data.content.rooms });
+      return res.data.content.rooms;
     } catch (error) {
       console.error(error);
       set({ error: "Gagal memuat room tersedia" });

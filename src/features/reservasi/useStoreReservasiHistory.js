@@ -1,7 +1,7 @@
 import { axiosReservasi } from "../../utils/Axios.js";
 import { create } from "zustand";
 
-export const useStoreReservasiHistory = create((set, get) => ({
+export const useStoreReservasiHistory = create((set) => ({
   checkoutList: [],
 
   fetchCheckout: async () => {

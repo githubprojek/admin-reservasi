@@ -19,7 +19,7 @@ export const useStoreHotel = create((set, get) => ({
     try {
       const res = await axiosHotel.get("/getHotel");
       set({
-        hotelList: res.data.hotels,
+        hotelList: res.data.content.hotels,
         isFetched: true, // ✅ Tandai sudah pernah fetch
       });
     } catch (error) {
