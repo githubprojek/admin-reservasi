@@ -1,4 +1,4 @@
-import React from "react";
+import { string } from "prop-types";
 
 const Spinner = ({ message = "Loading..." }) => {
   return (
@@ -7,6 +7,10 @@ const Spinner = ({ message = "Loading..." }) => {
       <p className="mt-4 text-blue-600 font-medium">{message}</p>
     </div>
   );
+};
+
+Spinner.propTypes = {
+  message: string,
 };
 
 export default Spinner;

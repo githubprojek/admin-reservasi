@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useAuthStore } from "./useStoreAuth.js";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import gambarHotel from "../../assets/gambar-hotel.jpg";
 
 const Login = () => {

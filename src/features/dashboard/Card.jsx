@@ -1,6 +1,6 @@
 // src/pages/Card.jsx
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDashboardStore } from "./useDashboardStore.js";
 import { UserCog, Hotel, BedDouble, CalendarCheck } from "lucide-react";
 import { motion } from "framer-motion";
@@ -10,7 +10,7 @@ const Card = () => {
 
   useEffect(() => {
     fetchDashboardData();
-  }, []);
+  }, [fetchDashboardData]);
 
   const cards = [
     {

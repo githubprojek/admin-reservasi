@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Upload, PlusCircle, X, ChevronLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useStoreHotel } from "../hotel/useStoreHotel";
@@ -32,7 +32,7 @@ const AddRoom = () => {
   useEffect(() => {
     fetchHotel();
     fetchFasilitas();
-  }, []);
+  }, [fetchHotel, fetchFasilitas]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

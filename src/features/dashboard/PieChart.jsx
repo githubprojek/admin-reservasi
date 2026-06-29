@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import useStoreRoom from "../room/useStoreRoom";
@@ -10,11 +10,10 @@ const PieChart = () => {
   const [chartData, setChartData] = useState(null);
 
   useEffect(() => {
-    // Pastikan data room dimuat hanya sekali saat kosong
     if (!roomList || roomList.length === 0) {
-      fetchRoom(true); // true = force fetch semua data
+      fetchRoom(true);
     }
-  }, []);
+  }, [roomList, fetchRoom]);
 
   useEffect(() => {
     if (!roomList || roomList.length === 0) return;

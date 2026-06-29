@@ -22,14 +22,13 @@ import UpdateStaff from "./features/auth/updateStaff";
 import Login from "./features/auth/Login";
 import { useEffect } from "react";
 import { useAuthStore } from "./features/auth/useStoreAuth";
-import { Loader } from "lucide-react";
 
 const App = () => {
-  const { isLoading, checkAuth } = useAuthStore();
+  const { checkAuth } = useAuthStore();
 
   useEffect(() => {
     checkAuth();
-  }, []);
+  }, [checkAuth]);
 
   // if (isLoading) {
   //   return (

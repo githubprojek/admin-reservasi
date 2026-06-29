@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useStoreRoom } from "./useStoreRoom";
 import { useStoreHotel } from "../hotel/useStoreHotel";
 import { useStoreFasilitas } from "../fasilitas/useStoreFasilitas";
@@ -9,8 +9,8 @@ const UpdateRoom = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { updateRoom } = useStoreRoom();
-  const { fetchHotel, hotelList } = useStoreHotel();
-  const { fetchFasilitas, fasilitasList } = useStoreFasilitas();
+  const { hotelList } = useStoreHotel();
+  const { fasilitasList } = useStoreFasilitas();
 
   const oldRoom = location.state;
 

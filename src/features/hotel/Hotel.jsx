@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useStoreHotel } from "./useStoreHotel.js";
 import { Plus, Trash2, Pencil, ImageIcon, MoreVertical } from "lucide-react";
 import Spinner from "../../components/Spinner";
@@ -16,7 +16,7 @@ const Hotel = () => {
 
   useEffect(() => {
     fetchHotel();
-  }, []);
+  }, [fetchHotel]);
 
   const handleAddHotel = () => {
     navigate("/hotel/add-hotel");

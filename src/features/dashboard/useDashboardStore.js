@@ -7,7 +7,7 @@ import useStoreReservasi from "../reservasi/useStoreReservasi.js";
 import useStoreHotel from "../hotel/useStoreHotel.js";
 import useStoreReservasiHistory from "../reservasi/useStoreReservasiHistory.js"; // ✅ Tambahkan ini
 
-export const useDashboardStore = create((set, get) => ({
+export const useDashboardStore = create((set) => ({
   loading: false,
   error: null,
 

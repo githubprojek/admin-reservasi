@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useStoreFasilitas } from "./useStoreFasilitas";
 import { Trash2 } from "lucide-react";
 import ConfirmModal from "../../components/ConfrimModal";
@@ -12,7 +12,7 @@ const Fasilitas = () => {
 
   useEffect(() => {
     fetchFasilitas();
-  }, []);
+  }, [fetchFasilitas]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

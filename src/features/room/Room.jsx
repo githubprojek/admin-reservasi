@@ -1,5 +1,5 @@
 // Room.jsx
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useStoreRoom } from "./useStoreRoom.js";
 import { Plus, MoreVertical, Pencil, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +13,7 @@ const Room = () => {
   const [checkOut, setCheckOut] = useState("");
   const { fetchHotel, hotelList } = useStoreHotel();
   const { user } = useAuthStore();
-  const { fetchRoom, roomList, deleteRoom, loading, error, availableRoom, fetchAvailableRooms } = useStoreRoom();
+  const { fetchRoom, deleteRoom, loading, error, availableRoom, fetchAvailableRooms } = useStoreRoom();
   const navigate = useNavigate();
   const [menuOpenId, setMenuOpenId] = useState(null);
   const [selectedRoom, setSelectedRoom] = useState(null);
@@ -24,7 +24,7 @@ const Room = () => {
   useEffect(() => {
     fetchRoom();
     fetchHotel();
-  }, []);
+  }, [fetchRoom, fetchHotel]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {

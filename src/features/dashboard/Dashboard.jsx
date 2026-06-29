@@ -1,6 +1,5 @@
 // src/pages/Dashboard.jsx
 
-import React from "react";
 import Card from "./Card";
 import LineChart from "./LineChart";
 import PieChart from "./PieChart";

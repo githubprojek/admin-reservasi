@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useStoreReservasi } from "../reservasi/useStoreReservasi.js";
 
 const Payment = () => {
@@ -6,7 +6,7 @@ const Payment = () => {
 
   useEffect(() => {
     fetchReservasi();
-  }, []);
+  }, [fetchReservasi]);
 
   return (
     <div className="max-w-6xl mx-auto p-6 space-y-6">

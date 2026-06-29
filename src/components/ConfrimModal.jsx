@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { bool, string, func } from "prop-types";
 
 const ConfirmModal = ({ open, title, description, onCancel, onConfirm }) => {
   const [show, setShow] = useState(open);
@@ -31,6 +32,14 @@ const ConfirmModal = ({ open, title, description, onCancel, onConfirm }) => {
       </div>
     </div>
   );
+};
+
+ConfirmModal.propTypes = {
+  open: bool.isRequired,
+  title: string.isRequired,
+  description: string.isRequired,
+  onCancel: func.isRequired,
+  onConfirm: func.isRequired,
 };
 
 export default ConfirmModal;

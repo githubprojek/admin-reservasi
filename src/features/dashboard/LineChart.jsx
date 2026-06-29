@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import { useDashboardStore } from "../dashboard/useDashboardStore";
 import { Chart as ChartJS, LineElement, PointElement, LinearScale, Title, CategoryScale, Tooltip, Legend } from "chart.js";
@@ -22,7 +22,7 @@ const LineChart = () => {
 
   useEffect(() => {
     fetchDashboardData();
-  }, []);
+  }, [fetchDashboardData]);
 
   useEffect(() => {
     if (!historyCheckoutList || historyCheckoutList.length === 0) return;

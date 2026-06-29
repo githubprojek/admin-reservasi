@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useStoreReservasi } from "./useStoreReservasi";
 import { ChevronLeft } from "lucide-react";
+import { string } from "prop-types";
 
 const UpdateReservasi = () => {
   const { id } = useParams();
@@ -40,7 +41,7 @@ const UpdateReservasi = () => {
         }
       });
     }
-  }, [id]);
+  }, [id, getReservasiById]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -55,6 +56,7 @@ const UpdateReservasi = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // eslint-disable-next-line no-unused-vars
     const { totalPrice, ...payload } = form;
 
     const result = await updateReservasi(id, payload);
@@ -153,5 +155,9 @@ const Input = ({ label, ...props }) => (
     <input {...props} className="bg-white w-full border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
   </div>
 );
+
+Input.propTypes = {
+  label: string.isRequired,
+};
 
 export default UpdateReservasi;

@@ -1,13 +1,12 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useStoreReservasi } from "./useStoreReservasi.js";
 import { Plus, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ConfirmModal from "../../components/ConfrimModal.jsx";
 
 const Reservasi = () => {
-  const { fetchReservasi, reservasiList, deleteReservasi, user, checkStatusPembayaran } = useStoreReservasi();
+  const { fetchReservasi, reservasiList, deleteReservasi, checkStatusPembayaran } = useStoreReservasi();
   const [selectedReservasi, setSelectedReservasi] = useState(null);
-  const [menuOpenId, setMenuOpenId] = useState(null);
   const [searchName, setSearchName] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const [dateRange, setDateRange] = useState({ start: "", end: "" });
@@ -17,7 +16,7 @@ const Reservasi = () => {
 
   useEffect(() => {
     fetchReservasi();
-  }, []);
+  }, [fetchReservasi]);
 
   useEffect(() => {
     const interval = setInterval(async () => {
@@ -61,7 +60,7 @@ const Reservasi = () => {
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
-        setMenuOpenId(null);
+        setSelectedReservasi(null);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -137,7 +136,7 @@ const Reservasi = () => {
                 <div className="mt-1 text-xs text-gray-500">
                   Status: <span className="font-semibold">{item.statusReservasi}</span> | Payment: <span className="font-semibold">{item.paymentStatus}</span>
                 </div>
-                {item.keterangan && <p className="mt-1 text-gray-500 text-xs italic">"{item.keterangan}"</p>}
+                {item.keterangan && <p className="mt-1 text-gray-500 text-xs italic">{`"${item.keterangan}"`}</p>}
               </div>
               <div className="mt-4 sm:mt-0 flex items-center gap-3">
                 <button onClick={() => navigate(`/reservasi/update-reservasi/${item._id}`)} className="text-blue-600 hover:text-blue-800 text-sm font-medium">
@@ -147,7 +146,6 @@ const Reservasi = () => {
                   onClick={(e) => {
                     e.stopPropagation();
                     setSelectedReservasi(item);
-                    setMenuOpenId(null);
                   }}
                   className="flex items-center gap-2 w-full px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
                 >

@@ -1,11 +1,8 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useStoreReservasiHistory } from "./useStoreReservasiHistory.js";
-import { Plus } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
 const HistoryReservasi = () => {
   const { fetchCheckout, checkoutList } = useStoreReservasiHistory();
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetchCheckout();

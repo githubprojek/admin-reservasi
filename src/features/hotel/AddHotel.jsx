@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useStoreHotel } from "./useStoreHotel.js";
 import { Upload, PlusCircle, X, ChevronLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";

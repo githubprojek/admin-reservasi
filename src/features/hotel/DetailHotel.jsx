@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useStoreHotel } from "./useStoreHotel";
 import Spinner from "../../components/Spinner";
@@ -12,6 +12,7 @@ const HotelDetail = () => {
   const { getHotelDetail, isLoading, isError } = useStoreHotel();
   const [hotel, setHotel] = useState(null);
 
+  // eslint-disable-next-line react/prop-types
   const InfoItem = ({ label, value }) => (
     <div className="min-w-[200px]">
       <h2 className="text-lg font-semibold text-gray-700 mb-1">{label}</h2>
@@ -25,7 +26,7 @@ const HotelDetail = () => {
       setHotel(data);
     };
     fetchDetail();
-  }, [id]);
+  }, [id, getHotelDetail]);
 
   if (isLoading) return <Spinner message="Memuat detail hotel..." />;
   if (isError) return <div className="text-red-600 p-6">{isError}</div>;

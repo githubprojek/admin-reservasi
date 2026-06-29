@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useStoreRoom } from "./useStoreRoom";
 import Spinner from "../../components/Spinner";
@@ -14,6 +14,7 @@ const DetailRoom = () => {
   const [room, setRoom] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  // eslint-disable-next-line react/prop-types
   const DetailItem = ({ label, value }) => (
     <div className="min-w-[200px]">
       <h2 className="text-lg font-semibold text-gray-700 mb-1">{label}</h2>
@@ -31,7 +32,7 @@ const DetailRoom = () => {
         .then((res) => setRoom(res))
         .finally(() => setLoading(false));
     }
-  }, [id, roomList]);
+  }, [id, roomList, getRoomDetail]);
 
   if (!room || loading) return <Spinner message="Memuat detail room..." />;
 
